@@ -8,7 +8,7 @@
     "url": "<%= projectRepository %>"
   },
   "license": "MIT",
-  "main": "index.js",
+  "main": "<%= projectName %>.js",
   "scripts": {
     "prepublish": "NODE_ENV=release ./node_modules/.bin/webpack --colors",
     "build": "NODE_ENV=development ./node_modules/.bin/webpack --colors",

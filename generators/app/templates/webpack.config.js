@@ -21,7 +21,7 @@ const config = {
     },
     output: {
         path: __dirname,
-        filename: "index.js",
+        filename: "<%= projectName %>.js",
         libraryTarget: "umd"
     },
     module: {
@@ -32,16 +32,8 @@ const config = {
         }]
     },
     plugins: [
-        new webpack.DefinePlugin({
-            'process.env': {
-                NODE_ENV: "'" + env + "'"
-            },
-            '__VERSION__': "'" + pkg.version + "'",
-            '__PKG__': JSON.stringify(pkg)
-        }),
         new webpack.BannerPlugin('/*! <%= projectName %>.js ' + (isDev ? 'Development' : 'Release') + ' v' + pkg.version +
-            ' Build ' + timestamp + ' | (C) ' + endYear +
-            ' <%= projectRepositoryAuthor %>.com | github.com/<%= projectRepositoryAuthor %>/<%= projectName %> | MIT */\n', {
+            ' Build ' + timestamp + ' | github.com/<%= projectRepositoryAuthor %>/<%= projectName %> | MIT */\n', {
                 raw: true,
                 entryOnly: true
             })
@@ -49,7 +41,7 @@ const config = {
 };
 
 if (!isDev) {
-    config.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    config.plugins.unshift(new webpack.optimize.UglifyJsPlugin({
         comments: /DO_NOT_PRESERVE_ANY/,
         compressor: {
             pure_getters: true,

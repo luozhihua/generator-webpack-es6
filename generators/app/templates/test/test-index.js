@@ -1,5 +1,5 @@
 
-var dist = require('../');
+var dist = require('../<%= projectName %>');
 var assert  = require('assert');
 
 describe('construct', function () {

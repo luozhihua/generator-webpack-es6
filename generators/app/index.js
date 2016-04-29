@@ -24,8 +24,6 @@ module.exports = yeoman.Base.extend({
             'Welcome to the legendary ' + chalk.red('generator-webpack-es6') + ' generator!'
         ));
 
-        console.log(this.user.git.email());
-
         var prompts = [{
             type: 'input',
             name: 'projectName',
@@ -55,16 +53,19 @@ module.exports = yeoman.Base.extend({
     },
 
     writing: function () {
-        this.props.projectRepositoryAuthor = this.user.github.username() || 'Anonymous';
+        this.props.projectName = this.props.projectName.replace(/\s/m, '-').toLowerCase();
+        this.props.projectRepositoryAuthor = this.user.github.username() || 'anonymous';
 
         this.fs.copy(
             this.templatePath('src'),
             this.destinationPath('src')
         );
 
-        this.fs.copy(
+        this.fs.copyTpl(
             this.templatePath('test'),
-            this.destinationPath('test')
+            this.destinationPath('test'), {
+                projectName: this.props.projectName
+            }
         );
 
         this.fs.copy(
@@ -105,10 +106,14 @@ module.exports = yeoman.Base.extend({
                 projectRepositoryAuthor: this.props.projectRepositoryAuthor
             }
         );
-        this.fs.copy(
+        this.fs.copyTpl(
             this.templatePath('webpack.config.js'),
-            this.destinationPath('webpack.config.js')
+            this.destinationPath('webpack.config.js'), {
+                projectName: this.props.projectName,
+                projectRepositoryAuthor: this.props.projectRepositoryAuthor
+            }
         );
+
     },
 
     install: function () {
