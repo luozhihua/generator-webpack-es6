@@ -4,6 +4,12 @@
 
 <%= description %>
 
+# usage
+
+```js
+var dist = require('<%= projectName %>');
+```
+
 # author
  - <%= author %>
 
