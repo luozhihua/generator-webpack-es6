@@ -80,9 +80,11 @@ module.exports = yeoman.Base.extend({
             this.templatePath('.eslintrc'),
             this.destinationPath('.eslintrc')
         );
-        this.fs.copy(
+        this.fs.copyTpl(
             this.templatePath('.gitignore'),
-            this.destinationPath('.gitignore')
+            this.destinationPath('.gitignore'), {
+                projectName: this.props.projectName
+            }
         );
         this.fs.copy(
             this.templatePath('.babelrc'),
