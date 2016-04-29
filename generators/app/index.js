@@ -76,6 +76,10 @@ module.exports = yeoman.Base.extend({
             this.templatePath('.eslintignore'),
             this.destinationPath('.eslintignore')
         );
+        this.fs.copy(
+            this.templatePath('.travis.yml'),
+            this.destinationPath('.travis.yml')
+        );
         this.fs.copyTpl(
             this.templatePath('.eslintrc'),
             this.destinationPath('.eslintrc')
