@@ -4,12 +4,12 @@
  *
  * changelog
  * 2016-04-22[11:12:44]:revised
+ * 2016-05-01[17:43:48]:add LICENSE
  *
  * @author yanni4night@gmail.com
- * @version 1.0.0
+ * @version 1.1.0
  * @since 1.0.0
  */
-//'use strict';
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 var yosay = require('yosay');
@@ -110,6 +110,12 @@ module.exports = yeoman.Base.extend({
                 author: this.props.author,
                 description: this.props.description,
                 projectRepositoryAuthor: this.props.projectRepositoryAuthor
+            }
+        );
+        this.fs.copyTpl(
+            this.templatePath('LICENSE'),
+            this.destinationPath('LICENSE'), {
+                author: this.props.author
             }
         );
         this.fs.copyTpl(
