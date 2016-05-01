@@ -6,6 +6,8 @@
 
 # usage
 
+    $ npm install <%= projectName %> --save
+
 ```js
 var dist = require('<%= projectName %>');
 ```
